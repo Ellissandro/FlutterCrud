@@ -16,9 +16,9 @@ class _UserFormState extends State<UserForm> {
 
   final Map<String, String> formData = {};
 
-  String? _validator(String? value) {
+  String? _validator(String? value, String field) {
     if (value == null || value.isEmpty) {
-      return 'Nome inválido';
+      return '$field inválido';
     }
 
     return null;
@@ -80,13 +80,13 @@ class _UserFormState extends State<UserForm> {
                   initialValue: formData['name'],
                   autofocus: true,
                   decoration: const InputDecoration(labelText: 'Nome'),
-                  validator: _validator,
+                  validator: (value) => _validator(value, 'Nome'),
                   onSaved: (value) => formData['name'] = value ?? '',
                 ),
                 TextFormField(
                   initialValue: formData['email'],
                   decoration: const InputDecoration(labelText: 'E-mail'),
-                  validator: _validator,
+                  validator: (value) => _validator(value, 'E-mail'),
                   onSaved: (value) => formData['email'] = value ?? '',
                 ),
                 TextFormField(
